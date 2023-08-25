@@ -25,8 +25,6 @@ lora = args.lora
 
 tokenizer = LlamaTokenizer.from_pretrained(base_model_name)
 
-
-
 base_model = LlamaForCausalLM.from_pretrained(
     base_model_name,
     load_in_8bit=False,
