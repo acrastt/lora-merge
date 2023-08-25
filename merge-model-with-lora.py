@@ -7,16 +7,16 @@ import os
 import torch
 import transformers
 from peft import PeftModel
-from transformers import LlamaForCausalLM, LlamaTokenizer  # noqa: F402
+from transformers import LlamaForCausalLM, LlamaTokenizer, LlamaConfig  # noqa: F402
 import argparse
 import shutil
 
 # Create the parser
-parser = argparse.ArgumentParser(description="A script for merging a model with a LoRA.")
+parser = argparse.ArgumentParser(description="Merge model with LoRA/QLoRA/Peft/Adapter")
 
 # Add the arguments
-parser.add_argument("model", type=str, help="The base model")
-parser.add_argument("lora", type=str, help="The lora")
+parser.add_argument("model", type=str, help="Base Model")
+parser.add_argument("lora", type=str, help="LoRA/QLoRA/Peft/Adapter Model")
 
 args = parser.parse_args()
 
@@ -24,6 +24,8 @@ base_model_name = args.model
 lora = args.lora
 
 tokenizer = LlamaTokenizer.from_pretrained(base_model_name)
+
+
 
 base_model = LlamaForCausalLM.from_pretrained(
     base_model_name,
@@ -69,5 +71,9 @@ LlamaForCausalLM.save_pretrained(
     base_model, "./merged_model", state_dict=deloreanized_sd, max_shard_size="10GB"
 )
 
-print("Copying tokenizer model from base model . . .")
-shutil.copy(f"{base_model_name}/tokenizer.model", "./merged_model/tokenizer.model")
+print("""Note: You only need those files(If they exist):
+            pytorch_model.bin
+            every pytorch_model-<number>-<number>.bin
+            pytorch_model.bin.index.json
+        Copy/re-use the rest of them from pase model.
+        """)
