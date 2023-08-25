@@ -1,7 +1,3 @@
-# this script is based on https://github.com/tloen/alpaca-lora/blob/main/export_hf_checkpoint.py
-# all it does is add a model and lora argument to cli, rather than using hard-coded lora and
-# model from environment
-
 import os
 
 import torch
@@ -69,9 +65,9 @@ LlamaForCausalLM.save_pretrained(
     base_model, "./merged_model", state_dict=deloreanized_sd, max_shard_size="10GB"
 )
 
-print("""Note: You only need those files(If they exist):
+print("""Note: You only need those files(Ignore if one of them doesn't exist.):
             pytorch_model.bin
             every pytorch_model-<number>-<number>.bin
             pytorch_model.bin.index.json
-        Copy/re-use the rest of them from pase model.
+        Copy/re-use the rest of them from base model.
         """)
