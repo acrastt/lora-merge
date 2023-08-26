@@ -1,5 +1,5 @@
 # lora-merge
-A script for merging a LLM model and a LoRA/QLoRA/Peft/Adapter
+A script for merging a LLM model and a LoRA model.
 
 Install the requirements: pip install -r requirements.txt
 
