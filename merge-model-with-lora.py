@@ -8,11 +8,11 @@ import argparse
 import shutil
 
 # Create the parser
-parser = argparse.ArgumentParser(description="Merge model with LoRA/QLoRA/Peft/Adapter")
+parser = argparse.ArgumentParser(description="Merge model with LoRA")
 
 # Add the arguments
 parser.add_argument("model", type=str, help="Base Model")
-parser.add_argument("lora", type=str, help="LoRA/QLoRA/Peft/Adapter Model")
+parser.add_argument("lora", type=str, help="LoRAModel")
 
 args = parser.parse_args()
 
