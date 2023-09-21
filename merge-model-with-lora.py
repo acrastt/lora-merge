@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser(description="Merge model with LoRA")
 
 # Add the arguments
 parser.add_argument("model", type=str, help="Base Model")
-parser.add_argument("lora", type=str, help="LoRAModel")
+parser.add_argument("lora", type=str, help="LoRA Model")
 
 args = parser.parse_args()
 
